@@ -1,0 +1,9 @@
+{
+  "name": "prd-workflow",
+  "description": "PRD pipeline for Digi PMs: build → check → prototype → decompose, plus PPD positioning. Five skills that take a feature idea from rough notes to an agent-ready spec and marketing positioning.",
+  "version": "2026.07.15-4",
+  "author": {
+    "name": "Josh Flinn",
+    "email": "joshua.flinn@digi.com"
+  }
+}

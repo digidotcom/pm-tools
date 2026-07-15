@@ -1,0 +1,15 @@
+{
+  "name": "pm-tools",
+  "description": "Plugins and skills for Digi product managers.",
+  "owner": {
+    "name": "Josh Flinn",
+    "email": "joshua.flinn@digi.com"
+  },
+  "plugins": [
+    {
+      "name": "prd-workflow",
+      "source": "./",
+      "description": "PRD pipeline for Digi PMs: build → check → prototype → decompose, plus PPD positioning."
+    }
+  ]
+}
