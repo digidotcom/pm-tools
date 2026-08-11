@@ -104,6 +104,11 @@ Check that the PRD's sections connect logically. Broken traceability means somet
 - Flag orphan stories (stories with no corresponding requirement)
 - Flag orphan requirements (requirements that don't trace to any user story)
 
+**Acceptance Criteria → Requirements (🟡 Warning if broken):**
+- Where a story's criteria and a functional requirement describe the same behavior, they must not contradict each other. Two testable statements of one behavior is two sources of truth, and they drift.
+- Flag criteria that introduce a condition appearing nowhere in the requirements — that is scope entering through the back door, and it is easy to miss because acceptance criteria read like housekeeping.
+- Flag a P0 requirement that no story's criteria exercise. Either the requirement is unjustified or a story is missing its test.
+
 **Goals → Success Metrics (🟡 Warning if broken):**
 - Each business goal should have at least one metric measuring progress toward it
 - Each user goal should have a metric or user story validating it
@@ -127,6 +132,17 @@ Depth checks within individual sections.
 - Follow "As a [type], I want to [action], so that [benefit]" format (or equivalent)
 - Each story has persona, action, AND benefit — not just persona and action
 - Stories aren't too broad ("As a user, I want to manage everything") or too narrow ("As a user, I want to click the blue button")
+- **Each story carries acceptance criteria** — the observable conditions that decide whether the story is delivered. A story with a benefit clause but no criteria states an intent nobody can rule on.
+- **Stories are individually addressable.** A story ID (or a stable heading) exists so a downstream ticket can trace back to the story it came from. A flat bullet list with no anchors makes decomposition guesswork.
+
+**Severity for missing acceptance criteria — calibrate, don't flag blindly:**
+- 🔴 **Critical** when neither the stories nor the Functional Requirements carry pass/fail conditions. Nothing in the document is testable and there is no path to a test case.
+- 🟡 **Warning** when the Functional Requirements are testable and cover the stories, but the stories themselves carry no criteria. The document is buildable, but every story-to-ticket handoff requires someone to re-derive the criteria from a different section, and each re-derivation is a chance to lose a condition.
+- 🔵 **Info** when a document deliberately puts all pass/fail conditions in the requirements and says so explicitly. Note the convention rather than flagging it as a defect.
+
+**Do not reward criteria that only restate the requirement.** Acceptance criteria that copy a functional requirement verbatim add a maintenance burden without adding a test. Good criteria state what an observer would see. Where a criterion restates a requirement, the document should say which one is authoritative so the two cannot drift apart.
+
+**A story whose criteria are a pointer to another story is a duplicate-story signal (🟡 Warning).** If the only honest acceptance criteria for a story are "same as [other story]," the two stories describe one capability from two personas. Flag it and name the pair. The fix is a scope decision for the PM (merge them, or give the second persona a distinct need), not an editorial one.
 
 **Functional Requirements:**
 - Each requirement is specific enough to implement and test
@@ -185,7 +201,15 @@ Verify that personas flow through the entire document, not just User Stories.
 
 ## 9. Testability
 
-For each functional requirement, ask: "Could QA write a test case from this as written?" If not, it's too vague to build against.
+For each functional requirement **and each user story**, ask: "Could QA write a test case from this as written?" If not, it's too vague to build against.
+
+**Run this category over both sections.** A PRD can have rigorous, testable Functional Requirements sitting above a User Stories section with no pass/fail conditions at all, and checking only the requirements will pass it clean. Requirements and stories are separate surfaces and each needs its own verdict. Report them separately so the PM can see which half is thin.
+
+**Untestable stories (severity per the calibration in category 6):**
+- Stories with no acceptance criteria at all
+- Criteria that restate the story's benefit clause rather than naming an observable condition ("so the fleet stays online" is a benefit, not a test)
+- Criteria describing an internal state rather than something a tester can see at the interface
+- Criteria that depend on reading a different section to know what passing looks like, without a pointer saying which section
 
 **Untestable requirements (🟡 Warning):**
 - Requirements with no defined success/failure criteria

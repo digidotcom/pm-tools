@@ -17,10 +17,13 @@ Use this exact structure when generating the quality report. The two-part format
 
 ### Sections Found: [comma-separated list]
 ### Sections Missing: [comma-separated list, or "None"]
+### Story Coverage: [n] of [m] user stories carry acceptance criteria
 
 ### Overall Assessment
 [1-2 sentence direct, honest verdict]
 ```
+
+**Story Coverage is a required line, and it is a count, not a verdict.** State the raw ratio even when it is perfect, because a present-and-passing line is what makes a zero impossible to overlook. Section-level checks are structurally blind to this: a PRD can have a User Stories section that is present, well formed, and completely untestable, and every section-presence check will report it as found. If the PRD deliberately keeps all pass/fail conditions in the Functional Requirements, write the ratio as `0 of m (by convention — criteria live in Functional Requirements)` rather than omitting the line.
 
 **Overall Assessment examples:**
 - "This PRD has solid bones but needs work on requirement specificity before it's engineering-ready."

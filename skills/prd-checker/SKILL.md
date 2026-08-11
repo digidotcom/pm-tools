@@ -61,7 +61,7 @@ The check categories cover:
 6. **Section Completeness** — depth checks within each section
 7. **Scope Creep Detection** — requirements disproportionate to stated goals
 8. **Persona Consistency** — personas flowing through the entire document
-9. **Testability** — could QA write a test case from each requirement as written?
+9. **Testability** — could QA write a test case from each requirement **and each user story** as written?
 10. **Cross-PRD Dependencies** — unvalidated external dependencies
 
 Read the full rules before starting. Each category has specific patterns to look for, severity guidance, and examples of what to flag vs. what to skip.
@@ -81,6 +81,8 @@ After running all check categories, perform a final go/no-go assessment calibrat
 - Every user-facing feature has a described UX flow with entry point, happy path, and error handling
 - Edge cases are enumerated, not deferred ("handle edge cases appropriately" = instant fail)
 - Enough context that someone with zero background could understand what to build
+- Every user story carries acceptance criteria, or the PRD states explicitly that pass/fail conditions live in the Functional Requirements and the requirements actually cover every story. Silence on this is a gap, not a convention.
+- Stories are individually addressable (story IDs or stable headings) so downstream tickets can trace back to them
 
 **Unambiguity test:**
 - Zero 🔴 Critical issues from the checks
